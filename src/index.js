@@ -7,7 +7,6 @@ import create from './store';
 //import Immutable from 'immutable';
 import playersReducer from './reducers/player'
 import tournamentReducer from './reducers/tournament'
-import {playerAppend, playerChange} from './reducers/actions'
 
 const reducers = {
   players: playersReducer,
@@ -15,9 +14,6 @@ const reducers = {
 };
 
 const store = create(reducers, {});
-//console.log(playerAppend('Karol Stvrty', 'Plavecky Stvrtok'))
-store.dispatch(playerAppend('Karol Stvrty', 'Plavecky Stvrtok'));
-store.dispatch(playerChange(1, {club: 'aaa'}));
 
 ReactDOM.render(
    <Provider store={store}>

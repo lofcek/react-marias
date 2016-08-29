@@ -14,7 +14,6 @@ class PlayerList extends React.Component {
                 <div className="col-lg-5">
                     <input type="text" value={p.get('club')} onChange={(e)=> this.props.playerChange(num, {club: e.target.value})}/>
                 </div>
-                
             </div>
         )
     })

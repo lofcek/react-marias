@@ -7,8 +7,8 @@ class PlayerList extends React.Component {
         return (       
             <div key={num} className="row">
                 <div className="col-lg-1">{num+1}.</div>
-                <div className="col-lg-6">{p.name}</div>
-                <div className="col-lg-5">{p.club}</div>
+                <div className="col-lg-6">{p.get('name')}</div>
+                <div className="col-lg-5">{p.get('club')}</div>
             </div>
         )
     })

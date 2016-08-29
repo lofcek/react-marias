@@ -6,7 +6,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="container-fluid">
-				<h1>{this.props.name}</h1>
+				<h1>{this.props.tournament.get('name')}</h1>
 				<PlayerList/>
       </div>
     );
@@ -14,5 +14,5 @@ class App extends React.Component {
 }
 
 export default connect(
-	state=>state.tournament
+	state=>({ tournament: state.tournament })
 )(App);

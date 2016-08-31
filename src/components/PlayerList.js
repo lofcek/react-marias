@@ -4,7 +4,7 @@ import {playerChange} from '../reducers/actions';
 
 class PlayerList extends React.Component {
   render() {
-    let players = this.props.players.map((p,num) => {
+    let players = this.props.list.map((p,num) => {
         return (       
             <div key={num} className="row">
                 <div className="col-lg-1">{num+1}.</div>
@@ -28,7 +28,7 @@ class PlayerList extends React.Component {
         </div>
         {players}
         <pre>
-            {JSON.stringify(this.props.players.toJS(), null, 2)}
+            {JSON.stringify(this.props.list.toJS(), null, 2)}
         </pre>
       </div>
     );
@@ -37,7 +37,7 @@ class PlayerList extends React.Component {
 
 export default connect(
   state => ({
-    players: state.players
+    list: state.players.get('list')
   }), {
       playerChange
   }

@@ -1,4 +1,4 @@
-import * as Action from './actions'
+import * as Actions from './actions'
 import Immutable from 'immutable'
 
 const PLAYER_MAX = 150;
@@ -16,7 +16,7 @@ while(initialState.get('list').size < PLAYER_MAX)
 
 export default function playersReducer(state = initialState, action) {
     switch(action.type) {
-    case Action.PLAYER_CHANGE:
+    case Actions.PLAYER_CHANGE:
         state = state.updateIn(['list', action.payload.index], (val) => val.merge(action.payload.player));
         let lastUsed = state.get('list').findLastIndex(v => v.get('name') || v.get('club'));
         state = state.set('list_cnt', lastUsed+1 );

@@ -13,5 +13,4 @@ export default function activeScreenReducer(state = initialState, action) {
     default:
         return state
     }
-    //console.log("activeScreenReducer state = "+JSON.stringify(state) )
 }

@@ -7,11 +7,13 @@ import create from './store';
 import playersReducer from './reducers/player'
 import tournamentReducer from './reducers/tournament'
 import activeScreenReducer from './reducers/activeScreen'
+import langReducer from './reducers/lang'
 
 const reducers = {
   players: playersReducer,
   tournament: tournamentReducer,
-  activeScreen: activeScreenReducer
+  activeScreen: activeScreenReducer,
+  lang: langReducer
 };
 
 const store = create(reducers, {});

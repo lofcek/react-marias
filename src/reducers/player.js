@@ -4,7 +4,7 @@ import Immutable from 'immutable'
 const PLAYER_MAX = 150;
 
 let initialState = Immutable.fromJS( {
-    list_cnt: 3,
+    listCnt: 3,
     list: [
         {name: 'Jozko Mrkvicka', club: 'Najvacsia diera'},
         {name: 'Janko Hrasko', club: 'Prievidza'},
@@ -19,7 +19,7 @@ export default function playersReducer(state = initialState, action) {
     case Actions.PLAYER_CHANGE:
         state = state.updateIn(['list', action.payload.index], (val) => val.merge(action.payload.player));
         let lastUsed = state.get('list').findLastIndex(v => v.get('name') || v.get('club'));
-        state = state.set('list_cnt', lastUsed+1 );
+        state = state.set('listCnt', lastUsed+1 );
         return state
     default:
         return state

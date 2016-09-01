@@ -4,9 +4,10 @@ import {playerChange} from '../reducers/actions';
 
 class PlayerList extends React.Component {
   render() {
+    const lang = this.props.lang;
     let players = this.props.list.map((p,num) => {
         return (       
-            <div key={num} className="row">
+            <div key={num} className="row" hidden={num > this.props.listCnt}>
                 <div className="col-lg-1">{num+1}.</div>
                 <div className="col-lg-6">
                     <input type="text" value={p.get('name')} onChange={(e)=> this.props.playerChange(num, {name: e.target.value})}/>
@@ -20,11 +21,11 @@ class PlayerList extends React.Component {
     
     return (
       <div>
-        <h2>List of players</h2>
+        <h2>{lang.IDS_LIST_OF_PLAYERS}</h2>
         <div className="row">
             <div className="col-lg-1">#</div>
-            <div className="col-lg-6">Meno</div>
-            <div className="col-lg-5">Klub</div>
+            <div className="col-lg-6">{lang.IDS_PLAYER_NAME}</div>
+            <div className="col-lg-5">{lang.IDS_PLAYER_CLUB}</div>
         </div>
         {players}
         <pre>
@@ -37,7 +38,9 @@ class PlayerList extends React.Component {
 
 export default connect(
   state => ({
-    list: state.players.get('list')
+    list: state.players.get('list'),
+    listCnt: state.players.get('listCnt'),
+    lang: state.lang
   }), {
       playerChange
   }

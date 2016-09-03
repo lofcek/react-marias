@@ -2,8 +2,8 @@ import * as Actions from './actions'
 import * as eng from '../localization/english.json';
 import * as svk from '../localization/slovak.json'
 
-export const en = Object.assign({}, eng, {lang: 'en'})
-export const sk = Object.assign({}, eng, svk, {lang: 'sk'})
+export const en = Object.assign({}, eng, {lang: 'en', pluralForm: n => n===1? 0 : 1})
+export const sk = Object.assign({}, eng, svk, {lang: 'sk', pluralForm: n => n===1? 0 : (n<=4 ? 1 : 2)})
 
 export const availableLang = [en, sk]
 

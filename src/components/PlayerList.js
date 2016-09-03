@@ -2,6 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {playerChange} from '../reducers/actions';
 import {Button, ButtonToolbar} from 'react-bootstrap';
+import {sprintf} from 'sprintf-js';
+//sprintf = require('sprintf').sprintf;
 
 class PlayerList extends React.Component {
   render() {
@@ -19,10 +21,12 @@ class PlayerList extends React.Component {
             </div>
         )
     })
-    let buttons =
+    let buttons = (
         <ButtonToolbar>
-            <Button bsStyle="primary">draw</Button>
-        </ButtonToolbar>
+            <Button bsStyle="primary">{sprintf(lang.IDS_DRAW_FIRST_ROUNDS[lang.pluralForm(this.props.numFixed)], this.props.numFixed)}</Button>
+        </ButtonToolbar>);
+    console.log(this.props.numFixed);
+    console.log(lang.pluralForm(this.props.numFixed));
     return (
       <div>
         <h1>{this.props.tourName}</h1>
@@ -47,7 +51,8 @@ export default connect(
     list: state.players.get('list'),
     listCnt: state.players.get('listCnt'),
     lang: state.lang,
-    tourName: state.tournament.get('name')
+    tourName: state.tournament.get('name'),
+    numFixed: state.tournament.get('numFixed'),
   }), {
       playerChange
   }

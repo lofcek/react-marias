@@ -15,10 +15,10 @@ export function playerChange(index, player) {
     }
 }
 
-export function tournamentChange(name, date) {
+export function tournamentChange(dict) {
     return {
         type: TOURNAMENT_CHANGE,
-        payload: {tournament: {name, date}}
+        payload: dict
     }
 }
 

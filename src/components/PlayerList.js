@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {playerChange} from '../reducers/actions'; 
+import {playerChange} from '../reducers/actions';
+import {Button, ButtonToolbar} from 'react-bootstrap';
 
 class PlayerList extends React.Component {
   render() {
@@ -18,9 +19,13 @@ class PlayerList extends React.Component {
             </div>
         )
     })
-    
+    let buttons =
+        <ButtonToolbar>
+            <Button bsStyle="primary">draw</Button>
+        </ButtonToolbar>
     return (
       <div>
+        <h1>{this.props.tourName}</h1>
         <h2>{lang.IDS_LIST_OF_PLAYERS}</h2>
         <div className="row">
             <div className="col-lg-1">#</div>
@@ -28,6 +33,7 @@ class PlayerList extends React.Component {
             <div className="col-lg-5">{lang.IDS_PLAYER_CLUB}</div>
         </div>
         {players}
+        {buttons}
         <pre>
             {JSON.stringify(this.props.list.toJS(), null, 2)}
         </pre>
@@ -40,7 +46,8 @@ export default connect(
   state => ({
     list: state.players.get('list'),
     listCnt: state.players.get('listCnt'),
-    lang: state.lang
+    lang: state.lang,
+    tourName: state.tournament.get('name')
   }), {
       playerChange
   }

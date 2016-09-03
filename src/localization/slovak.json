@@ -4,5 +4,11 @@
     "IDS_PLAYER_CLUB": "Klub",
     "IDS_ORDER": "#",
     "IDS_TOURNAMENT": "Turnaj",
-    "IDS_TOURNAMENENT_NAME": "Meno turnaja"
+    "IDS_TOURNAMENT_NAME": "Meno turnaja:",
+    "IDS_PLACEHOLDER_TOUR_NAME": "Meno turnaja",
+    "IDS_DRAW_FIRST_ROUNDS": [
+        "Rozlosovať prvých %d kolo",
+        "Rozlosovať prvých %d kôlá",
+        "Rozlosovať prvých %d kôl"
+    ]
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PlayerList from './PlayerList';
+import Tournament from './Tournament';
 import { Nav, NavItem} from 'react-bootstrap';
 import * as Actions from '../reducers/actions'
 
@@ -8,6 +9,9 @@ class App extends React.Component {
   render() {
     let screenBody = ' ';
     switch(this.props.activeScreen) {
+      case Actions.ACTIVE_SCREEN_TOUR:
+        screenBody = <Tournament/>;
+        break;
       case Actions.ACTIVE_SCREEN_PLAYERS:
         screenBody = <PlayerList/>;
         break;

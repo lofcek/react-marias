@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import create from './store';
 import playersReducer from './reducers/player'
 import tournamentReducer from './reducers/tournament'
+import drawReducer from './reducers/draw'
 import activeScreenReducer from './reducers/activeScreen'
 import langReducer from './reducers/lang'
 
@@ -13,6 +14,7 @@ const reducers = {
   players: playersReducer,
   tournament: tournamentReducer,
   activeScreen: activeScreenReducer,
+  draw: drawReducer,
   lang: langReducer
 };
 

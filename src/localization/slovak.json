@@ -1,5 +1,8 @@
 {
-    "IDS_LIST_OF_PLAYERS": "Zoznam hráčov",
+    "IDS_PLAYERS": "Hráči",
+    "IDS_ROASTER": "Súpiska",
+    "IDS_DRAW": "Rozlosovanie",
+    "IDS_NTH_ROUND": "%d. kolo",
     "IDS_PLAYER_NAME": "Meno",
     "IDS_PLAYER_CLUB": "Klub",
     "IDS_ORDER": "#",

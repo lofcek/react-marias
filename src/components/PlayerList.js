@@ -1,11 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {playerChange} from '../reducers/actions';
+import {playerChange,makeFixedDraw} from '../reducers/actions';
 import {Button, ButtonToolbar} from 'react-bootstrap';
 import {sprintf} from 'sprintf-js';
-//sprintf = require('sprintf').sprintf;
 
 class PlayerList extends React.Component {
+  handleMakeFixedDraws(e) {
+      for(let i=0; i<this.props.numFixed; ++i) {
+          this.props.makeFixedDraw(i, this.props.listCnt);
+      }
+  }
   render() {
     const lang = this.props.lang;
     let players = this.props.list.map((p,num) => {
@@ -23,14 +27,18 @@ class PlayerList extends React.Component {
     })
     let buttons = (
         <ButtonToolbar>
-            <Button bsStyle="primary" disabled={this.props.listCnt%3 !==0}>{sprintf(lang.IDS_DRAW_FIRST_ROUNDS[lang.pluralForm(this.props.numFixed)], this.props.numFixed)}</Button>
+            <Button
+                bsStyle="primary"
+                disabled={this.props.listCnt%3 !==0}
+                onClick={(e) => this.handleMakeFixedDraws(e)}    
+                >
+                    {sprintf(lang.IDS_DRAW_FIRST_ROUNDS[lang.pluralForm(this.props.numFixed)], this.props.numFixed)}
+            </Button>
         </ButtonToolbar>);
-    console.log(this.props.numFixed);
-    console.log(lang.pluralForm(this.props.numFixed));
     return (
       <div>
         <h1>{this.props.tourName}</h1>
-        <h2>{lang.IDS_LIST_OF_PLAYERS}</h2>
+        <h2>{lang.IDS_ROASTER}</h2>
         <div className="row">
             <div className="col-lg-1">#</div>
             <div className="col-lg-6">{lang.IDS_PLAYER_NAME}</div>
@@ -54,6 +62,7 @@ export default connect(
     tourName: state.tournament.get('name'),
     numFixed: state.tournament.get('numFixed'),
   }), {
-      playerChange
+      playerChange,
+      makeFixedDraw
   }
 )(PlayerList);

@@ -1,5 +1,8 @@
 {
-    "IDS_LIST_OF_PLAYERS": "List of players",
+    "IDS_PLAYERS": "Players",
+    "IDS_ROASTER": "Roaster",
+    "IDS_DRAW": "Draws",
+    "IDS_NTH_ROUND": "%d. round",
     "IDS_PLAYER_NAME": "Name of player",
     "IDS_PLAYER_CLUB": "Club",
     "IDS_ORDER": "#",

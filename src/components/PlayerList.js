@@ -23,7 +23,7 @@ class PlayerList extends React.Component {
     })
     let buttons = (
         <ButtonToolbar>
-            <Button bsStyle="primary">{sprintf(lang.IDS_DRAW_FIRST_ROUNDS[lang.pluralForm(this.props.numFixed)], this.props.numFixed)}</Button>
+            <Button bsStyle="primary" disabled={this.props.listCnt%3 !==0}>{sprintf(lang.IDS_DRAW_FIRST_ROUNDS[lang.pluralForm(this.props.numFixed)], this.props.numFixed)}</Button>
         </ButtonToolbar>);
     console.log(this.props.numFixed);
     console.log(lang.pluralForm(this.props.numFixed));
@@ -39,7 +39,7 @@ class PlayerList extends React.Component {
         {players}
         {buttons}
         <pre>
-            {JSON.stringify(this.props.list.toJS(), null, 2)}
+            {JSON.stringify(this.props.list.toJS().slice(0, this.props.listCnt), null, 2)}
         </pre>
       </div>
     );

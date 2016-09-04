@@ -8,6 +8,8 @@
     "IDS_PLACEHOLDER_TOUR_NAME": "Meno turnaja",
     "IDS_ROUNDS_WITH_FIXED": "Kôl s fixným poradím",
     "IDS_ROUNDS_CNT": "Kôl spolu",
+    "IDS_ROUNDS": "Hracie kolá",
+    "IDS_NROUND": ["%d. kolo"],
     "IDS_DRAW_FIRST_ROUNDS": [
         "Rozlosovať prvé %d kolo",
         "Rozlosovať prvé %d kolá",

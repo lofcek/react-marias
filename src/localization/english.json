@@ -9,6 +9,8 @@
     "IDS_ROUNDS_WITH_FIXED": "Rounds with fixed order",
     "IDS_ROUNDS_CNT": "Number of rounds",
     "IDS_DRAW_FIRST_ROUNDS": ["Draw first %d round", "Draw first %d rounds"],
+    "IDS_ROUNDS": "Rounds",
+    "IDS_NROUND": ["%dst round", "%dnd round", "%drd round", "%dth round"],
     "IDS_DRAW_SWISS_SYSTEM": "Draw swiss system",
     "IDS_POINT_FOR0": "Points for player, that has no money"
 }

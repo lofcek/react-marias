@@ -1,19 +1,27 @@
 {
-    "IDS_PLAYERS": "Players",
-    "IDS_ROASTER": "Roaster",
-    "IDS_DRAW": "Draws",
-    "IDS_NTH_ROUND": "%d. round",
-    "IDS_PLAYER_NAME": "Name of player",
-    "IDS_PLAYER_CLUB": "Club",
-    "IDS_ORDER": "#",
-    "IDS_TOURNAMENT": "Tournament",
-    "IDS_TOURNAMENT_NAME": "Name of Tournament:",
-    "IDS_PLACEHOLDER_TOUR_NAME": "Name of the Tournament",
-    "IDS_ROUNDS_WITH_FIXED": "Rounds with fixed order",
-    "IDS_ROUNDS_CNT": "Number of rounds",
-    "IDS_DRAW_FIRST_ROUNDS": ["Draw first %d round", "Draw first %d rounds"],
-    "IDS_ROUNDS": "Rounds",
-    "IDS_NROUND": ["%dst round", "%dnd round", "%drd round", "%dth round"],
-    "IDS_DRAW_SWISS_SYSTEM": "Draw swiss system",
-    "IDS_POINT_FOR0": "Points for player, that has no money"
+  "IDS_PLAYERS": "Players",
+  "IDS_ROASTER": "Roaster",
+  "IDS_DRAW": "Draws",
+  "IDS_NTH_ROUND": "%d. round",
+  "IDS_PLAYER_NAME": "Name of player",
+  "IDS_PLAYER_CLUB": "Club",
+  "IDS_ORDER": "#",
+  "IDS_TOURNAMENT": "Tournament",
+  "IDS_TOURNAMENT_NAME": "Name of Tournament:",
+  "IDS_PLACEHOLDER_TOUR_NAME": "Name of the Tournament",
+  "IDS_ROUNDS_WITH_FIXED": "Rounds with fixed order",
+  "IDS_ROUNDS_CNT": "Number of rounds",
+  "IDS_DRAW_FIRST_ROUNDS": [
+    "Draw first %d round",
+    "Draw first %d rounds"
+  ],
+  "IDS_ROUNDS": "Rounds",
+  "IDS_NROUND": [
+    "%dst round",
+    "%dnd round",
+    "%drd round",
+    "%dth round"
+  ],
+  "IDS_DRAW_SWISS_SYSTEM": "Draw swiss system",
+  "IDS_POINT_FOR0": "Points for player, that has no money"
 }

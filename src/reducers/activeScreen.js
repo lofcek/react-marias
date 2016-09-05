@@ -3,14 +3,14 @@ import Immutable from 'immutable'
 
 
 const initialState = Immutable.fromJS({
-    screen: Actions.ACTIVE_SCREEN_TOUR,
+  screen: Actions.ACTIVE_SCREEN_TOUR,
 })
 
 export default function activeScreenReducer(state = initialState, action) {
-    switch(action.type) {
+  switch (action.type) {
     case Actions.ACTIVE_SCREEN_CHANGE:
-        return state.set('screen', action.payload.screen)
+      return state.set('screen', action.payload.screen)
     default:
-        return state
-    }
+      return state
+  }
 }

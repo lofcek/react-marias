@@ -12,8 +12,8 @@ export default function create(reducers, initialState) {
     applyMiddleware(thunk, promise, logger)
   );
   return store;
-  
-  
+
+
   //const create = applyMiddleware(thunk)(createStore);
   //return applyMiddleware(thunk, promise, logger);
   //(reducer, initialState);

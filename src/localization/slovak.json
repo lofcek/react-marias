@@ -1,21 +1,23 @@
 {
-    "IDS_PLAYERS": "Hráči",
-    "IDS_ROASTER": "Súpiska",
-    "IDS_DRAW": "Rozlosovanie",
-    "IDS_NTH_ROUND": "%d. kolo",
-    "IDS_PLAYER_NAME": "Meno",
-    "IDS_PLAYER_CLUB": "Klub",
-    "IDS_ORDER": "#",
-    "IDS_TOURNAMENT": "Turnaj",
-    "IDS_TOURNAMENT_NAME": "Meno turnaja:",
-    "IDS_PLACEHOLDER_TOUR_NAME": "Meno turnaja",
-    "IDS_ROUNDS_WITH_FIXED": "Kôl s fixným poradím",
-    "IDS_ROUNDS_CNT": "Kôl spolu",
-    "IDS_ROUNDS": "Hracie kolá",
-    "IDS_NROUND": ["%d. kolo"],
-    "IDS_DRAW_FIRST_ROUNDS": [
-        "Rozlosovať prvé %d kolo",
-        "Rozlosovať prvé %d kolá",
-        "Rozlosovať prvých %d kôl"
-    ]
+  "IDS_PLAYERS": "Hráči",
+  "IDS_ROASTER": "Súpiska",
+  "IDS_DRAW": "Rozlosovanie",
+  "IDS_NTH_ROUND": "%d. kolo",
+  "IDS_PLAYER_NAME": "Meno",
+  "IDS_PLAYER_CLUB": "Klub",
+  "IDS_ORDER": "#",
+  "IDS_TOURNAMENT": "Turnaj",
+  "IDS_TOURNAMENT_NAME": "Meno turnaja:",
+  "IDS_PLACEHOLDER_TOUR_NAME": "Meno turnaja",
+  "IDS_ROUNDS_WITH_FIXED": "Kôl s fixným poradím",
+  "IDS_ROUNDS_CNT": "Kôl spolu",
+  "IDS_ROUNDS": "Hracie kolá",
+  "IDS_NROUND": [
+    "%d. kolo"
+  ],
+  "IDS_DRAW_FIRST_ROUNDS": [
+    "Rozlosovať prvé %d kolo",
+    "Rozlosovať prvé %d kolá",
+    "Rozlosovať prvých %d kôl"
+  ]
 }

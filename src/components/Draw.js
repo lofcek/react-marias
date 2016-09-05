@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 //import {playerChange} from '../reducers/actions';
 import {Table} from 'react-bootstrap';
 import {sprintf} from 'sprintf-js';
-import _ from loadash;
+import _ from 'lodash';
 
 class Draw extends React.Component {
   render() {
@@ -22,12 +22,13 @@ class Draw extends React.Component {
             </tr>
           </thead>
           <tbody>
+          {
             _.times(
-            this.props.numRounds,
+            numTables,
             t =>
-            <tr key={'tr' + t}>{row}
+            <tr key={'tr' + t}>
               {
-                _.flatten(
+                _.zip(
                   _.times(this.props.numRounds,
                     r => [
                       <td key={t + '.' + r + '.1'} className="text-center">{r < rounds.length ? 1 + rounds[r][t][0] : ''}</td>,
@@ -38,7 +39,7 @@ class Draw extends React.Component {
               }
             </tr>
             )
-
+          }
           </tbody>
         </Table>
       </div>

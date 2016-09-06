@@ -9,7 +9,7 @@ class Draw extends React.Component {
   render() {
     const lang = this.props.lang;
     const rounds = this.props.rounds.toJS();
-    const numTables = this.props.listCnt / 3;
+    const numTables = rounds.length ? this.props.listCnt / 3 : 0;
 
     return (
       <div>
@@ -31,9 +31,9 @@ class Draw extends React.Component {
                 _.zip(
                   _.times(this.props.numRounds,
                     r => [
-                      <td key={t + '.' + r + '.1'} className="text-center">{r < rounds.length ? 1 + rounds[r][t][0] : ''}</td>,
-                      <td key={t + '.' + r + '.2'} className="text-center">{r < rounds.length ? 1 + rounds[r][t][1] : ''}</td>,
-                      <td key={t + '.' + r + '.3'} className="text-center">{r < rounds.length ? 1 + rounds[r][t][2] : ''}</td>
+                      <td key={`t-${r}-1`} className="text-center">{r < rounds.length ? 1 + rounds[r][t][0] : ''}</td>,
+                      <td key={`t-${r}-2`} className="text-center">{r < rounds.length ? 1 + rounds[r][t][1] : ''}</td>,
+                      <td key={`t-${r}-3`} className="text-center">{r < rounds.length ? 1 + rounds[r][t][2] : ''}</td>
                     ]
                   ))
               }

@@ -29,8 +29,8 @@ class App extends React.Component {
       // no default
     }
     
-    const lang = this.props.lang;
-    const roundDisabled = this.props.round.map(r => r.size === 0);
+    const {lang, round} = this.props;
+    const roundDisabled = round.map(r => r.size === 0);
     return (
       <div>
         <Nav bsStyle="tabs"
@@ -39,7 +39,7 @@ class App extends React.Component {
           <NavItem eventKey={{screen: Actions.ACTIVE_SCREEN_TOUR}}>{lang.IDS_TOURNAMENT}</NavItem>
           <NavDropdown id="players" title={lang.IDS_PLAYERS}>
             <MenuItem eventKey={{screen: Actions.ACTIVE_SCREEN_PLAYERS}}>{lang.IDS_ROASTER}</MenuItem>
-            <MenuItem eventKey={{screen: Actions.ACTIVE_SCREEN_DRAW}}>{lang.IDS_DRAW}</MenuItem>
+            <MenuItem eventKey={{screen: Actions.ACTIVE_SCREEN_DRAW}} disabled={round.size===0}>{lang.IDS_DRAW}</MenuItem>
           </NavDropdown>
           <NavDropdown id="rounds" title={lang.IDS_ROUNDS}>
             {_.times(

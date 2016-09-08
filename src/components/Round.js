@@ -1,35 +1,34 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Table} from 'react-bootstrap';
-import Immutable from 'immutable';
-//import {sprintf} from 'sprintf-js';
+import {sprintf} from 'sprintf-js';
 import _ from 'lodash';
 
 class RoundTable extends React.Component {
   render() {
-    const { table, round, names, order } = this.props;
+    const { table, round, names, order, lang } = this.props;
     return (
       <div>
         <Table bordered condensed hover>
           <tbody>
             <tr>
-              <td className="col-md-1" rowSpan="4">{table}</td>
-              <td className="col-md-9">{round}.kolo</td>
-              <td className="col-md-1">Peniaze</td>
-              <td className="col-md-1">Body</td>
+              <td className="col-md-1" rowSpan="4"><strong>{table}</strong></td>
+              <td className="col-md-9"><strong>{sprintf(lang.IDS_NTH_ROUND, round)}</strong></td>
+              <td className="col-md-1"><strong>{lang.IDS_MONEY}</strong></td>
+              <td className="col-md-1"><strong>{lang.IDS_POINTS}</strong></td>
             </tr>
             <tr>
-              <td>{order.get(0) }.{names.get(0) }</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>{order.get(1) }.{names.get(1) }</td>
+              <td>{order.get(0)+1}. {names.get(order.get(0)).get('name') }</td>
               <td></td>
               <td></td>
             </tr>
             <tr>
-              <td>{order.get(2) }.{names.get(2) }</td>
+              <td>{order.get(1)+1}. {names.get(order.get(1)).get('name') }</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>{order.get(2)+1}. {names.get(order.get(2)).get('name') }</td>
               <td></td>
               <td></td>
             </tr>
@@ -42,10 +41,21 @@ class RoundTable extends React.Component {
 
 class Round extends React.Component {
   render() {
-    const {r} = this.props;
+    const {r, rounds, players, lang} = this.props
+    const round = rounds.get(r);
+    console.log(round);
     return (
       <div>
-        {_.times(this.props.listCnt/3, t => <RoundTable round={r+1} table={t+1} names={Immutable.fromJS(['name1', 'name2', 'name3']) } order={Immutable.fromJS([2, 32, 4]) } />)}
+        {_.times(
+          this.props.listCnt/3,
+          t => <RoundTable
+            key={`rt-${r}-${t}`}
+            round={r+1}
+            table={t+1}
+            names={players}
+            order={round.get(t)}
+            lang={lang} />
+        )}
       </div>
     );
   }

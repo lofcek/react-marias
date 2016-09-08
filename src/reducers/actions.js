@@ -27,7 +27,7 @@ export function tournamentChange(dict) {
 export function activeScreenChange(screen) {
   return {
     type: ACTIVE_SCREEN_CHANGE,
-    payload: { screen }
+    payload: screen 
   }
 }
 

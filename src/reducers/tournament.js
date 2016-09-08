@@ -11,7 +11,7 @@ const initialState = Immutable.fromJS({
 export default function tourReducer(state = initialState, action) {
   switch (action.type) {
     case Action.TOURNAMENT_CHANGE:
-      return state.merge(action.payload, Immutable.fromJS(action.payload))
+      return state.merge(Immutable.fromJS(action.payload))
     default:
       return state
   }

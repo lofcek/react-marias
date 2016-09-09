@@ -23,7 +23,6 @@ class App extends React.Component {
         screenBody = <Draw/>;
         break;
       case Actions.ACTIVE_SCREEN_ROUNDS:
-        console.log("round ---- ", this.props.activeScreen.get('round'))
         screenBody = <Round r={this.props.activeScreen.get('round')}/>;
         break;
       // no default

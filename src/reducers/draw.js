@@ -1,5 +1,5 @@
-import * as Actions from './actions'
-import Immutable from 'immutable'
+import * as Actions from './actions';
+import Immutable from 'immutable';
 
 let initialState = Immutable.fromJS({
   round: [

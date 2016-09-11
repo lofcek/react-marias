@@ -1,5 +1,5 @@
-import * as Action from './actions'
-import Immutable from 'immutable'
+import * as Action from './actions';
+import Immutable from 'immutable';
 
 const initialState = Immutable.fromJS({
   name: "O pohar starostu Chropova",

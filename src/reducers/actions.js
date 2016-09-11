@@ -3,6 +3,7 @@ export const PLAYER_CHANGE = 'PLAYER_CHANGE';
 export const CHANGE_LANG = 'CHANGE_LANG'
 export const ACTIVE_SCREEN_CHANGE = 'ACTIVE_SCREEN_CHANGE';
 export const MAKE_FIXED_DRAW = 'MAKE_FIXED_DRAW';
+export const MONEY_CHANGE = 'MONEY_CHANGE';
 
 export const ACTIVE_SCREEN_TOUR = 'ACTIVE_SCREEN_TOUR';
 export const ACTIVE_SCREEN_PLAYERS = 'ACTIVE_SCREEN_PLAYERS';
@@ -44,6 +45,18 @@ export function makeFixedDraw(round, numPlayers) {
     payload: {
       round,
       numPlayers
+    }
+  }
+}
+
+export function moneyChange(round, table, player, money) {
+  return {
+    type: MONEY_CHANGE,
+    payload: {
+      round,
+      table,
+      player,
+      money
     }
   }
 }

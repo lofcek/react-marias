@@ -15,7 +15,7 @@ class Round extends React.Component {
         <h1>{this.props.tourName}</h1>
         <h2>{sprintf(lang.IDS_NTH_ROUND, r+1) }</h2>
         {_.times(
-          1, /*this.props.listCnt / 3,*/
+          this.props.listCnt / 3,
           t => <RoundTable
             key={`rt-${r}-${t}`}
             round={r}

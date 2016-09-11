@@ -7,12 +7,17 @@ import {moneyChange} from '../reducers/actions';
 import _ from 'lodash';
 
 
+function points(m1, m2, m3) {
+  const arr = [m1, m2, m3]
+  return _.map(arr, x=> _.sum(_.map(arr, n => (x > n) + (x >= n))))
+}
+
 class RoundTable extends React.Component {
   render() {
-    const { table, lang, players, round } = this.props;
-    const order = this.props.rounds.getIn([round, table]);
-    const money = _.times(3, i => this.props.money_str.getIn([round, table, i], ""))
-    console.log(JSON.stringify(money));
+    const { table, lang, players, round, order, money_str, money_float } = this.props;
+    let pts = ['', '', '']
+    if ('number' === typeof money_float.get(0) && 'number' === typeof money_float.get(1) && 'number' === typeof money_float.get(2))
+      pts = points(money_float.get(0), money_float.get(1), money_float.get(2))
 
     return (
       <div>
@@ -28,8 +33,8 @@ class RoundTable extends React.Component {
               _.times(3, i =>
                 <tr key={`tr-${round}-${table}-${i}`}>
                   <td>{order.get(i) + 1}.{players.get(order.get(i)).get('name') }</td>
-                  <td><input type="text" value={money[i]} onChange={e => this.props.moneyChange(round, table, i, e.target.value) }/></td>
-                  <td></td>
+                  <td><input type="text" value={money_str.get(i)} onChange={e => this.props.moneyChange(round, table, i, e.target.value) }/></td>
+                  <td>{pts[i]}</td>
                 </tr>
               )
             }
@@ -41,12 +46,12 @@ class RoundTable extends React.Component {
 }
 
 export default connect(
-  state => ({
+  (state, ownProps) => ({
     lang: state.lang,
     players: state.players.get('list'),
-    listCnt: state.players.get('listCnt'),
-    rounds: state.draw.get('round'),
-    money_str: state.money.get('money_str'),
+    order: state.draw.getIn(['round', ownProps.round, ownProps.table]),
+    money_str: state.money.getIn(['money_str', ownProps.round, ownProps.table],  null),
+    money_float: state.money.getIn(['money_float', ownProps.round, ownProps.table],  null)
   }), {
     moneyChange
   }

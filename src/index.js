@@ -9,7 +9,7 @@ import tournamentReducer from './reducers/tournament'
 import drawReducer from './reducers/draw'
 import activeScreenReducer from './reducers/activeScreen'
 import langReducer from './reducers/lang'
-import moneyReducer from './reducers/money'
+import scoreReducer from './reducers/score'
 
 const reducers = {
   players: playersReducer,
@@ -17,7 +17,7 @@ const reducers = {
   activeScreen: activeScreenReducer,
   draw: drawReducer,
   lang: langReducer,
-  money: moneyReducer
+  score: scoreReducer
 };
 
 const store = create(reducers, {});

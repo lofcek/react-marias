@@ -7,17 +7,11 @@ import {moneyChange} from '../reducers/actions';
 import _ from 'lodash';
 
 
-function points(m1, m2, m3) {
-  const arr = [m1, m2, m3]
-  return _.map(arr, x=> _.sum(_.map(arr, n => (x > n) + (x >= n))))
-}
+
 
 class RoundTable extends React.Component {
   render() {
-    const { table, lang, players, round, order, money_str, money_float } = this.props;
-    let pts = ['', '', '']
-    if ('number' === typeof money_float.get(0) && 'number' === typeof money_float.get(1) && 'number' === typeof money_float.get(2))
-      pts = points(money_float.get(0), money_float.get(1), money_float.get(2))
+    const { table, lang, players, round, order, money_str, /*money_float,*/ points } = this.props;
 
     return (
       <div>
@@ -34,7 +28,7 @@ class RoundTable extends React.Component {
                 <tr key={`tr-${round}-${table}-${i}`}>
                   <td>{order.get(i) + 1}.{players.get(order.get(i)).get('name') }</td>
                   <td><input type="text" value={money_str.get(i)} onChange={e => this.props.moneyChange(round, table, i, e.target.value) }/></td>
-                  <td>{pts[i]}</td>
+                  <td>{points.get(i)===null ? '' : points.get(i)}</td>
                 </tr>
               )
             }
@@ -50,8 +44,9 @@ export default connect(
     lang: state.lang,
     players: state.players.get('list'),
     order: state.draw.getIn(['round', ownProps.round, ownProps.table]),
-    money_str: state.money.getIn(['money_str', ownProps.round, ownProps.table],  null),
-    money_float: state.money.getIn(['money_float', ownProps.round, ownProps.table],  null)
+    money_str: state.score.getIn(['money_str', ownProps.round, ownProps.table],  null),
+    //money_float: state.score.getIn(['money_float', ownProps.round, ownProps.table],  null),
+    points: state.score.getIn(['points', ownProps.round, ownProps.table],  null)
   }), {
     moneyChange
   }

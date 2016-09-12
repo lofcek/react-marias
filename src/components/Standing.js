@@ -30,7 +30,7 @@ class Standings extends React.Component {
 
     let users = _.times(listCnt,
       p => {
-        let user = _.extend({ number: p }, players[p])
+        let user = _.extend({ number: p }, players.get(p).toJS())
         user.rounds = _.times(round.size, r => ({
           money: _.sum(mny[p][r]),
           points: _.sum(pts[p][r]),
@@ -38,8 +38,8 @@ class Standings extends React.Component {
           point_status: pts[p][r].length !== 1 ? STATUS_ERR : (pts[p][r][0] === null ? STATUS_WARN : STATUS_OK)
         })
         )
-        user.total_money = _.sum(user.money)
-        user.total_points = _.sum(user.points)
+        user.total_money = _.sum(_.map(user.rounds, 'money'))
+        user.total_points = _.sum(_.map(user.rounds, 'points'))
         return user
       }
     )

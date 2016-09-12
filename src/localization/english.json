@@ -16,8 +16,8 @@
     "Draw first %d rounds"
   ],
   "IDS_MONEY": "Money",
-  "IDS_POINTS": "Points",
+  "IDS_POINTS": "Score",
+  "IDS_OVERALL_STANDINGS": "Overall standings",
   "IDS_ROUNDS": "Rounds",
-  "IDS_DRAW_SWISS_SYSTEM": "Draw swiss system",
-  "IDS_POINT_FOR0": "Points for player, that has no money"
+  "IDS_DRAW_SWISS_SYSTEM": "Draw swiss system"
 }

@@ -53,6 +53,6 @@ export default connect(
     rounds: state.draw.get('round'),
     tourName: state.tournament.get('name'),
     numRounds: state.tournament.get('numRounds'),
-    listCnt: state.players.get('listCnt'),
+    listCnt: state.players.get('listCnt')
   })
 )(Draw);

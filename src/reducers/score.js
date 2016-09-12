@@ -32,13 +32,15 @@ export default function scoreReducer(state = initialState, action) {
       const {round, table, player,money} = action.payload;
       state = state.setIn(['money_str', round, table, player], money)
       let m = Number(money);
-      if(isNaN(m)) {
+      if(Number.isNaN(m)) {
         m = Number(money.replace(',', '.'))
       }
       if(money.trim() === '')
         m = null;
-      state = state.setIn(['money_float', round, table, player], typeof(m)!=="number" || isNaN(m) ? null: m)
+      state = state.setIn(['money_float', round, table, player], _.isFinite(m) ? m: null)
       state = state.setIn(['points', round, table], Immutable.fromJS(points(state.getIn(['money_float', round, table]))))
+      console.log("money_str", JSON.stringify(state.get('money_str')))
+      console.log("money_float", JSON.stringify(state.get('money_float')))
       return state
     default:
       return state

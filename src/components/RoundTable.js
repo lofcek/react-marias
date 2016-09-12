@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {Table} from 'react-bootstrap';
 import {sprintf} from 'sprintf-js';
 import {moneyChange} from '../reducers/actions';
-//import Immutable from 'immutable';
 import _ from 'lodash';
 
 
@@ -11,7 +10,7 @@ import _ from 'lodash';
 
 class RoundTable extends React.Component {
   render() {
-    const { table, lang, players, round, order, money_str, /*money_float,*/ points } = this.props;
+    const { table, lang, players, round, order, money_str, points } = this.props;
 
     return (
       <div>

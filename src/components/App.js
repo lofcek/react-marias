@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PlayerList from './PlayerList';
 import Tournament from './Tournament';
+import Standing from './Standing';
 import Draw from './Draw';
 import Round from './Round';
 import {Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
@@ -22,6 +23,9 @@ class App extends React.Component {
       case Actions.ACTIVE_SCREEN_DRAW:
         screenBody = <Draw/>;
         break;
+      case Actions.ACTIVE_SCREEN_STANDINGS:
+        screenBody = <Standing/>;
+        break;
       case Actions.ACTIVE_SCREEN_ROUNDS:
         screenBody = <Round r={this.props.activeScreen.get('round')}/>;
         break;
@@ -39,6 +43,7 @@ class App extends React.Component {
           <NavDropdown id="players" title={lang.IDS_PLAYERS}>
             <MenuItem eventKey={{screen: Actions.ACTIVE_SCREEN_PLAYERS}}>{lang.IDS_ROASTER}</MenuItem>
             <MenuItem eventKey={{screen: Actions.ACTIVE_SCREEN_DRAW}} disabled={round.size===0}>{lang.IDS_DRAW}</MenuItem>
+            <MenuItem eventKey={{screen: Actions.ACTIVE_SCREEN_STANDINGS}} disabled={round.size===0}>{lang.IDS_OVERALL_STANDINGS}</MenuItem>
           </NavDropdown>
           <NavDropdown id="rounds" title={lang.IDS_ROUNDS}>
             {_.times(

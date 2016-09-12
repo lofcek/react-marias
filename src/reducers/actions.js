@@ -9,6 +9,7 @@ export const ACTIVE_SCREEN_TOUR = 'ACTIVE_SCREEN_TOUR';
 export const ACTIVE_SCREEN_PLAYERS = 'ACTIVE_SCREEN_PLAYERS';
 export const ACTIVE_SCREEN_DRAW = 'ACTIVE_SCREEN_DRAW';
 export const ACTIVE_SCREEN_ROUNDS = 'ACTIVE_SCREEN_ROUNDS';
+export const ACTIVE_SCREEN_STANDINGS = 'ACTIVE_SCREEN_STANDINGS';
 
 
 export function playerChange(index, player) {

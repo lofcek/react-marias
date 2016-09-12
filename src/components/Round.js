@@ -9,7 +9,6 @@ import RoundTable from './RoundTable.js'
 class Round extends React.Component {
   render() {
     const {r, lang} = this.props
-    //const round = rounds.get(r);
     return (
       <div>
         <h1>{this.props.tourName}</h1>
@@ -30,7 +29,6 @@ class Round extends React.Component {
 export default connect(
   state => ({
     lang: state.lang,
-    rounds: state.draw.get('round'),
     tourName: state.tournament.get('name'),
     players: state.players.get('list'),
     listCnt: state.players.get('listCnt')

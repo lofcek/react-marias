@@ -46,9 +46,6 @@ class PlayerList extends React.Component {
         </div>
         {players}
         {buttons}
-        <pre>
-          {JSON.stringify(this.props.list.toJS().slice(0, this.props.listCnt), null, 2) }
-        </pre>
       </div>
     );
   }

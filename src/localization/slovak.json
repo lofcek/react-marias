@@ -5,7 +5,7 @@
   "IDS_NTH_ROUND": "%d. kolo",
   "IDS_PLAYER_NAME": "Meno",
   "IDS_PLAYER_CLUB": "Klub",
-  "IDS_ORDER": "#",
+  "IDS_ORDER": "Poradie",
   "IDS_TOURNAMENT": "Turnaj",
   "IDS_TOURNAMENT_NAME": "Meno turnaja:",
   "IDS_PLACEHOLDER_TOUR_NAME": "Meno turnaja",
@@ -19,5 +19,6 @@
   ],
   "IDS_MONEY": "Peniaze",
   "IDS_POINTS": "Body",
+  "IDS_TOTAL": "Spolu",
   "IDS_OVERALL_STANDINGS": "Priebežné poradie"
 }

@@ -5,7 +5,7 @@
   "IDS_NTH_ROUND": "%d. round",
   "IDS_PLAYER_NAME": "Name of player",
   "IDS_PLAYER_CLUB": "Club",
-  "IDS_ORDER": "#",
+  "IDS_ORDER": "Order",
   "IDS_TOURNAMENT": "Tournament",
   "IDS_TOURNAMENT_NAME": "Name of Tournament:",
   "IDS_PLACEHOLDER_TOUR_NAME": "Name of the Tournament",
@@ -19,5 +19,6 @@
   "IDS_POINTS": "Score",
   "IDS_OVERALL_STANDINGS": "Overall standings",
   "IDS_ROUNDS": "Rounds",
+  "IDS_TOTAL": "Total",
   "IDS_DRAW_SWISS_SYSTEM": "Draw swiss system"
 }

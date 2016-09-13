@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-//import {Table} from 'react-bootstrap';
-//import {sprintf} from 'sprintf-js';
+import {Table} from 'react-bootstrap';
+import {sprintf} from 'sprintf-js';
 import _ from 'lodash';
 
 const [STATUS_OK, STATUS_WARN, STATUS_ERR] = _.range(3);
-console.log(":::", STATUS_OK, STATUS_WARN, STATUS_ERR)
+//console.log(":::", STATUS_OK, STATUS_WARN, STATUS_ERR)
 
 class Standings extends React.Component {
   render() {
@@ -15,14 +15,13 @@ class Standings extends React.Component {
     let pts = _.times(listCnt, () => _.times(round.size, () => []))
     let mny = _.times(listCnt, () => _.times(round.size, () => []))
 
-    console.log("mny", listCnt, mny[0]);
-
     round.forEach(
       (table, r) => table.forEach(
         (players, t) => players.forEach(
-          p => {
-            mny[p][r].push(score.getIn(['money_float', r, t, p], null))
-            pts[p][r].push(score.getIn(['points', r, t, p], null))
+          (p, i) => {
+            //console.log(JSON.stringify([r, t, p], score.getIn(['money_float', r, t, i])))
+            mny[p][r].push(score.getIn(['money_float', r, t, i], null))
+            pts[p][r].push(score.getIn(['points', r, t, i], null))
           }
         )
       )
@@ -43,13 +42,63 @@ class Standings extends React.Component {
         return user
       }
     )
+    users = _.orderBy(users, ['total_points', 'total_money', 'number'], ['desc', 'desc', 'asc'])
+    let prev = []
+    let total_order = 0
+    users.forEach(
+      (u, i) => {
+        const res = [u.total_points, u.total_money]
+        if (!_.isEqual(res, prev)) {
+          total_order = i
+        }
+        u.total_order = total_order
+        prev = res
+      }
+    )
+    let center = { textAlign: "center" };
+
+    console.log(JSON.stringify(_.countBy(users, u => u.total_points + ',' + u.total_money)))
 
     return (
-      <div>
-        <pre>
-          {JSON.stringify(users, null, 2) }
-        </pre>
-      </div>
+      <Table striped bordered condensed hover>
+        <thead>
+          <tr>
+            <th style={center}>{lang.IDS_ORDER}</th>
+            <th style={center}>{lang.IDS_PLAYER_NAME}</th>
+            {_.times(round.size, i => <th style={center} colSpan="2" key={`tr-${i}`}>{sprintf(lang.IDS_NTH_ROUND, 1 + i) }</th>) }
+            <th style={center} colSpan="2">{lang.IDS_TOTAL}</th>
+          </tr>
+          <tr>
+            <th style={center}/>
+            <th style={center}/>
+            {_.flatten(
+              _.times(1 + round.size,
+                i => [<th style={center} key={`pts-${i}`}>{lang.IDS_POINTS}</th>, <th style={center} key={`mny-${i}`}>{lang.IDS_MONEY}</th>])) }
+          </tr>
+        </thead>
+        <tbody>
+          {
+            _.map(
+              users,
+              u =>
+                <tr key={`u${u.number}`}>
+                  <td>{1+u.total_order}.</td>
+                  <td>{u.name}</td>
+                  {_.flatten(
+                    _.times(
+                      round.size,
+                      i =>
+                        [
+                          <td key={`r-${u.number}-${i}`}>{u.rounds[i].points}</td>,
+                          <td key={`m-${u.number}-${i}`}>{u.rounds[i].money}</td>]))
+                  }
+                  <td>{u.total_points}</td>
+                  <td>{u.total_money}</td>
+                </tr>
+            )
+          }
+        </tbody>
+      </Table>
     );
   }
 }

@@ -1,8 +1,11 @@
+import _ from 'lodash';
+
 export const TOURNAMENT_CHANGE = 'TOURNAMENT_CHANGE';
 export const PLAYER_CHANGE = 'PLAYER_CHANGE';
 export const CHANGE_LANG = 'CHANGE_LANG'
 export const ACTIVE_SCREEN_CHANGE = 'ACTIVE_SCREEN_CHANGE';
 export const MAKE_FIXED_DRAW = 'MAKE_FIXED_DRAW';
+export const SET_RULE = 'SET_RULE';
 export const MONEY_CHANGE = 'MONEY_CHANGE';
 
 export const ACTIVE_SCREEN_TOUR = 'ACTIVE_SCREEN_TOUR';
@@ -10,6 +13,7 @@ export const ACTIVE_SCREEN_PLAYERS = 'ACTIVE_SCREEN_PLAYERS';
 export const ACTIVE_SCREEN_DRAW = 'ACTIVE_SCREEN_DRAW';
 export const ACTIVE_SCREEN_ROUNDS = 'ACTIVE_SCREEN_ROUNDS';
 export const ACTIVE_SCREEN_STANDINGS = 'ACTIVE_SCREEN_STANDINGS';
+
 
 
 export function playerChange(index, player) {
@@ -59,5 +63,12 @@ export function moneyChange(round, table, player, money) {
       player,
       money
     }
+  }
+}
+
+export function setRule(value) {
+  return {
+    type: SET_RULE,
+    payload: _.extend({}, value)
   }
 }

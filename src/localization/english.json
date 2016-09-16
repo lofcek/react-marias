@@ -20,5 +20,11 @@
   "IDS_OVERALL_STANDINGS": "Overall standings",
   "IDS_ROUNDS": "Rounds",
   "IDS_TOTAL": "Total",
+  "IDS_RULE_SCORE0": "Score of the player who lose all money:",
+  "IDS_RULE_NORMAL": "Normal",
+  "IDS_RULE_NOPOINT": "No point",
+  "IDS_RULE_ORDER": "What decides about order:",
+  "IDS_RULE_POINTS_FIRST": "Points first, money after it",
+  "IDS_RULE_MONEY_FIRST": "Money first, points after it",
   "IDS_DRAW_SWISS_SYSTEM": "Draw swiss system"
 }

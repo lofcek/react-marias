@@ -20,5 +20,11 @@
   "IDS_MONEY": "Peniaze",
   "IDS_POINTS": "Body",
   "IDS_TOTAL": "Spolu",
+  "IDS_RULE_SCORE0": "Body pre hráča, čo prehral všetky peniaze:",
+  "IDS_RULE_NORMAL": "Normálne",
+  "IDS_RULE_NOPOINT": "Bez bodu",
+  "IDS_RULE_ORDER": "Čo rozhoduje o poradí:",
+  "IDS_RULE_POINTS_FIRST": "Najprv body, potom peniaze",
+  "IDS_RULE_MONEY_FIRST": "Najprv peniaze, potom body",
   "IDS_OVERALL_STANDINGS": "Priebežné poradie"
 }

@@ -9,7 +9,7 @@ const [STATUS_OK, STATUS_WARN, STATUS_ERR] = _.range(3);
 
 class Standings extends React.Component {
   render() {
-    const { listCnt, lang, players, round, order, score, points } = this.props;
+    const { listCnt, lang, players, round, score, preferMoney} = this.props;
 
     // lists how much points and money player gets in each round
     let pts = _.times(listCnt, () => _.times(round.size, () => []))
@@ -42,12 +42,13 @@ class Standings extends React.Component {
         return user
       }
     )
-    users = _.orderBy(users, ['total_points', 'total_money', 'number'], ['desc', 'desc', 'asc'])
+    const preferency =  preferMoney ?  ['total_money', 'total_points'] : ['total_points', 'total_money'];
+    users = _.orderBy(users, _.concat(preferency, 'number'), ['desc', 'desc', 'asc'])
     let prev = []
     let total_order = 0
     users.forEach(
       (u, i) => {
-        const res = [u.total_points, u.total_money]
+        const res = preferency
         if (!_.isEqual(res, prev)) {
           total_order = i
         }
@@ -57,7 +58,7 @@ class Standings extends React.Component {
     )
     let center = { textAlign: "center" };
 
-    console.log(JSON.stringify(_.countBy(users, u => u.total_points + ',' + u.total_money)))
+    //console.log(JSON.stringify(_.countBy(users, u => u.total_points + ',' + u.total_money)))
 
     return (
       <Table striped bordered condensed hover>
@@ -110,6 +111,7 @@ export default connect(
     listCnt: state.players.get('listCnt'),
     round: state.draw.getIn(['round']),
     score: state.score,
-    points: state.score.get('points', null)
+    preferMoney: state.score.getIn(['rule', 'preferMoney'])
+    //points: state.score.get('points', null)
   })
 )(Standings);

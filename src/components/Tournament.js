@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Grid, Row, Col} from 'react-bootstrap';
-import * as Actions from '../reducers/actions'
+import * as Actions from '../reducers/actions';
 import _ from 'lodash';
 
 class Tournament extends React.Component {

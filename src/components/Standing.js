@@ -5,7 +5,7 @@ import {sprintf} from 'sprintf-js';
 //import Immutable from 'immutable';
 import _ from 'lodash';
 
-const [STATUS_OK, STATUS_WARN, STATUS_ERR] = _.range(3);
+const [STATUS_OK, STATUS_WARN, STATUS_ERR] = ['', 'warning', 'danger']
 //console.log(":::", STATUS_OK, STATUS_WARN, STATUS_ERR)
 
 class Standings extends React.Component {
@@ -50,8 +50,6 @@ class Standings extends React.Component {
     users.forEach(
       (u, i) => {
         const res = _.pick(u, preferency);
-        console.log("i", i)
-        console.log("res", JSON.stringify(res), "prev", JSON.stringify(prev), _.isEqual(res, prev))
         if (!_.isEqual(res, prev)) {
           total_order = i
         }
@@ -93,8 +91,8 @@ class Standings extends React.Component {
                       round.size,
                       i =>
                         [
-                          <td key={`r-${u.number}-${i}`}>{u.rounds[i].points}</td>,
-                          <td key={`m-${u.number}-${i}`}>{u.rounds[i].money}</td>]))
+                          <td className={u.rounds[i].point_status} key={`r-${u.number}-${i}`}>{u.rounds[i].points}</td>,
+                          <td className={u.rounds[i].money_status} key={`m-${u.number}-${i}`}>{u.rounds[i].money}</td>]))
                   }
                   <td>{u.total_points}</td>
                   <td>{u.total_money}</td>

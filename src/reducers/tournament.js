@@ -1,4 +1,4 @@
-import * as Action from './actions';
+import * as Actions from './actions';
 import Immutable from 'immutable';
 
 const initialState = Immutable.fromJS({
@@ -10,7 +10,7 @@ const initialState = Immutable.fromJS({
 
 export default function tourReducer(state = initialState, action) {
   switch (action.type) {
-    case Action.TOURNAMENT_CHANGE:
+    case Actions.TOURNAMENT_CHANGE:
       return state.merge(Immutable.fromJS(action.payload))
     default:
       return state

@@ -28,7 +28,7 @@ store.dispatch(Actions.makeFixedDraw(2, 9))
 store.dispatch(Actions.moneyChange(0, 0, 0, '10'))
 store.dispatch(Actions.moneyChange(0, 0, 1, '10'))
 store.dispatch(Actions.moneyChange(0, 0, 2, '12'))
-store.dispatch(Actions.activeScreenChange({screen: Actions.ACTIVE_SCREEN_STANDINGS}))
+store.dispatch(Actions.activeScreenChange({screen: Actions.ACTIVE_SCREEN_DRAW}))
 
 ReactDOM.render(
   <Provider store={store}>

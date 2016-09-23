@@ -1,5 +1,6 @@
 import * as Actions from './actions';
 import Immutable from 'immutable';
+import _ from 'lodash';
 
 let initialState = Immutable.fromJS({
   round: [
@@ -17,13 +18,25 @@ export default function drawReducer(state = initialState, action) {
     case Actions.FOCUS_DRAW:
       return state.set('edited', Immutable.fromJS(action.payload))
     case Actions.EDIT_DRAW:
-      return state.setIn([
+      let val = _.toNumber(action.payload.text)-1;
+      if (!_.isFinite(val) || !_.isInteger(val) || val < 0 || val >= 3*state.get('round').size )
+        val = null;
+      console.log(
+        'Change ',
+        state.getIn(['edited', 'round']),
+        state.getIn(['edited', 'table']),
+        state.getIn(['edited', 'player']),
+        JSON.stringify(action.payload.text),
+        val)
+      state = state.setIn([
         'round',
         state.getIn(['edited', 'round']),
         state.getIn(['edited', 'table']),
         state.getIn(['edited', 'player'])],
-        Number(action.payload.text)-1
+        val
       ).setIn(['edited', 'text'], action.payload.text)
+      console.log("[000] =", state.getIn(['round',0,0,0]))
+      return state
     case Actions.MAKE_FIXED_DRAW:
       const { round, numPlayers} = action.payload;
       const numTables = numPlayers / 3;

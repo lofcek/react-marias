@@ -9,24 +9,46 @@ const [STATUS_OK, STATUS_WARNING, STATUS_DANGER] = ['', 'warning', 'danger']
 
 class EditableTd extends React.Component {
   render() {
-    const {t, r, p, text, active, focusDraw, editDraw} = this.props;
+    let {text} = this.props;
+    const {r, t, p, active, focusDraw, editDraw} = this.props;
     const verifyClass = this.props.verify ? this.props.verify(_.toNumber(text)) : STATUS_OK;
 
     if (!active) {
+      if (text === null) text = '';
       return (
         <td key={`t-${r}-${p}`} className={`${verifyClass} text-center`} onClick={(e) => { focusDraw(r, t, p, text) } }>{text}</td>
       )
     } else {
-      return <td key={`ti-${r}-${p}`} className={`${verifyClass} text-center`}><input type="text" value={text} onChange={(e) => editDraw(e.target.value) } onBlur={(e) => focusDraw(null, null, null, null) } /></td>
+      if (text === null) text = '-';
+      return (
+        <td key={`ti-${r}-${p}`} className={`${verifyClass} text-center`}>
+          <input
+            type="text"
+            value={text}
+            onChange={(e) => editDraw(e.target.value) }
+            onBlur={(e) => {
+              let n = _.toInteger(e.target.value);
+              console.log("onBlur", n, e.target.value);
+              editDraw(_.isFinite(n) ? n : null);
+              focusDraw(null, null, null, null); }} />
+        </td>);
     }
   }
 }
+EditableTd = connect(
+  state => ({
+  }), {
+    focusDraw: Actions.focusDraw,
+    editDraw: Actions.editDraw
+  }
+)(EditableTd);
 
 class Draw extends React.Component {
   render() {
     const rounds = this.props.rounds.toJS();
     const numTables = rounds.length ? this.props.listCnt / 3 : 0;
-    const {lang, editDraw, focusDraw, edited} = this.props;
+    const {lang, edited} = this.props;
+
 
     let isActive = (round, table, player) => {
       return (
@@ -60,7 +82,7 @@ class Draw extends React.Component {
                         _.times(
                           this.props.numRounds,
                           r =>
-                            _.times(3, p => <EditableTd t={t} r={r} p={p} text={isActive(r, t, p) ? edited.get('text') : r < rounds.length ? 1 + rounds[r][t][p] : ''} active={isActive(r, t, p) } focusDraw={focusDraw}  editDraw={editDraw} verify={r < rounds.length ? verify : null}/>
+                            _.times(3, p => <EditableTd t={t} r={r} p={p} text={isActive(r, t, p) ? edited.get('text') : r < rounds.length ? 1 + rounds[r][t][p] : ''} active={isActive(r, t, p) } verify={r < rounds.length ? verify : null}/>
                             )))
                     }
                   </tr>
@@ -81,8 +103,5 @@ export default connect(
     tourName: state.tournament.get('name'),
     numRounds: state.tournament.get('numRounds'),
     listCnt: state.players.get('listCnt')
-  }), {
-    focusDraw: Actions.focusDraw,
-    editDraw: Actions.editDraw
-  }
+  })
 )(Draw);

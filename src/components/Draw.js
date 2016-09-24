@@ -9,9 +9,9 @@ const [STATUS_OK, STATUS_WARNING, STATUS_DANGER] = ['', 'warning', 'danger']
 
 class EditableTd extends React.Component {
   render() {
-    const {r, t, p, isActive, playerNum, isEditable, focusDraw, editDraw} = this.props;   
+    const {r, t, p, isActive, playerNum, isEditable, isAlreadyUsed, focusDraw, editDraw} = this.props;   
     //const verifyClass = this.props.verify ? this.props.verify(_.toNumber(text)) : STATUS_OK;
-    let verifyClass = playerNum===null ? STATUS_DANGER: STATUS_OK;
+    let verifyClass = isEditable && playerNum===null ? STATUS_DANGER: (isAlreadyUsed ? STATUS_WARNING : STATUS_OK);
 
     if (!isActive || !isEditable) {
       let text = playerNum===null ? '-' :playerNum+1;
@@ -33,7 +33,6 @@ class EditableTd extends React.Component {
             onChange={(e) => editDraw(e.target.value) }
             onBlur={(e) => {
               let n = _.toInteger(e.target.value);
-              console.log("onBlur", n, e.target.value);
               editDraw(_.isFinite(n) ? n : null);
               focusDraw(null, null, null, null); }} />
         </td>);
@@ -55,14 +54,21 @@ class Draw extends React.Component {
   render() {
     const rounds = this.props.rounds.toJS();
     const numTables = rounds.length ? this.props.listCnt / 3 : 0;
-    const {lang} = this.props;
+    const {lang, edited} = this.props;
 
-
-    let isActive = (round, table, player) => {
+    // map how often appeared such number (show warning for used more than once in a round)
+    let countUsed = []
+      for(let r=0; r < rounds.length; r++)
+        countUsed.push(_.countBy(_.flatten(rounds[r])))
+    let isAlreadyUsed = function(r,t,p) {
+        // true if round and player is valid, and number of player appeared more than once
+        return r < rounds.length && rounds[r][t][p]!==null && countUsed[r][rounds[r][t][p]]>1;
+    }
+    let isActive = function(round, table, player) {
       return (
-        round === this.props.edited.get('round') &&
-        table === this.props.edited.get('table') &&
-        player === this.props.edited.get('player'));
+        round === edited.get('round') &&
+        table === edited.get('table') &&
+        player === edited.get('player'));
     }
     return (
       <div>
@@ -85,7 +91,7 @@ class Draw extends React.Component {
                         _.times(
                           this.props.numRounds,
                           r =>
-                            _.times(3, p => <EditableTd t={t} r={r} p={p} isActive={isActive(r, t, p)} />
+                            _.times(3, p => <EditableTd t={t} r={r} p={p} isActive={isActive(r, t, p)} isAlreadyUsed={isAlreadyUsed(r,t,p)}/>
                             )))
                     }
                   </tr>

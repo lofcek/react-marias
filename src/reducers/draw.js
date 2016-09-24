@@ -21,13 +21,6 @@ export default function drawReducer(state = initialState, action) {
       let val = _.toNumber(action.payload.text)-1;
       if (!_.isFinite(val) || !_.isInteger(val) || val < 0 || val >= 3*state.get('round').size )
         val = null;
-      console.log(
-        'Change ',
-        state.getIn(['edited', 'round']),
-        state.getIn(['edited', 'table']),
-        state.getIn(['edited', 'player']),
-        JSON.stringify(action.payload.text),
-        val)
       state = state.setIn([
         'round',
         state.getIn(['edited', 'round']),
@@ -35,7 +28,6 @@ export default function drawReducer(state = initialState, action) {
         state.getIn(['edited', 'player'])],
         val
       ).setIn(['edited', 'text'], action.payload.text)
-      console.log("[000] =", state.getIn(['round',0,0,0]))
       return state
     case Actions.MAKE_FIXED_DRAW:
       const { round, numPlayers} = action.payload;

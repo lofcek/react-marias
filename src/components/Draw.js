@@ -9,22 +9,27 @@ const [STATUS_OK, STATUS_WARNING, STATUS_DANGER] = ['', 'warning', 'danger']
 
 class EditableTd extends React.Component {
   render() {
-    let {text} = this.props;
-    const {r, t, p, active, focusDraw, editDraw} = this.props;
-    const verifyClass = this.props.verify ? this.props.verify(_.toNumber(text)) : STATUS_OK;
+    const {r, t, p, isActive, playerNum, isEditable, focusDraw, editDraw} = this.props;   
+    //const verifyClass = this.props.verify ? this.props.verify(_.toNumber(text)) : STATUS_OK;
+    let verifyClass = playerNum===null ? STATUS_DANGER: STATUS_OK;
 
-    if (!active) {
-      if (text === null) text = '';
+    if (!isActive || !isEditable) {
+      let text = playerNum===null ? '-' :playerNum+1;
       return (
-        <td key={`t-${r}-${p}`} className={`${verifyClass} text-center`} onClick={(e) => { focusDraw(r, t, p, text) } }>{text}</td>
+        <td
+          key={`t-${r}-${p}`}
+          className={`${verifyClass} text-center`}
+          onClick={isEditable ? (e) => { focusDraw(r, t, p, text) } : undefined}
+        >{text}</td>
       )
     } else {
-      if (text === null) text = '-';
+      let {activeText} = this.props;
+      if (activeText === null) activeText = '';
       return (
         <td key={`ti-${r}-${p}`} className={`${verifyClass} text-center`}>
           <input
             type="text"
-            value={text}
+            value={activeText}
             onChange={(e) => editDraw(e.target.value) }
             onBlur={(e) => {
               let n = _.toInteger(e.target.value);
@@ -36,7 +41,10 @@ class EditableTd extends React.Component {
   }
 }
 EditableTd = connect(
-  state => ({
+  (state, ownProps) => ({
+    playerNum: state.draw.getIn(['round', ownProps.r, ownProps.t, ownProps.p], null),
+    isEditable: ownProps.r < state.draw.get('round').size,
+    activeText: ownProps.isActive ? state.draw.get('edited').get('text') : undefined
   }), {
     focusDraw: Actions.focusDraw,
     editDraw: Actions.editDraw
@@ -47,7 +55,7 @@ class Draw extends React.Component {
   render() {
     const rounds = this.props.rounds.toJS();
     const numTables = rounds.length ? this.props.listCnt / 3 : 0;
-    const {lang, edited} = this.props;
+    const {lang} = this.props;
 
 
     let isActive = (round, table, player) => {
@@ -55,11 +63,6 @@ class Draw extends React.Component {
         round === this.props.edited.get('round') &&
         table === this.props.edited.get('table') &&
         player === this.props.edited.get('player'));
-    }
-    let verify = text => {
-      if (!_.isFinite(text)) return STATUS_DANGER;
-      let n = _.toNumber(text)-1;
-      return n >= 0 && n < this.props.listCnt && _.isInteger(n) ? STATUS_OK : STATUS_DANGER;
     }
     return (
       <div>
@@ -82,7 +85,7 @@ class Draw extends React.Component {
                         _.times(
                           this.props.numRounds,
                           r =>
-                            _.times(3, p => <EditableTd t={t} r={r} p={p} text={isActive(r, t, p) ? edited.get('text') : r < rounds.length ? 1 + rounds[r][t][p] : ''} active={isActive(r, t, p) } verify={r < rounds.length ? verify : null}/>
+                            _.times(3, p => <EditableTd t={t} r={r} p={p} isActive={isActive(r, t, p)} />
                             )))
                     }
                   </tr>

@@ -32,8 +32,8 @@ class Standings extends React.Component {
       p => {
         let user = _.extend({ number: p }, players.get(p).toJS())
         user.rounds = _.times(round.size, r => ({
-          money: _.sum(mny[p][r]),
-          points: _.sum(pts[p][r]),
+          money: mny[p][r].length ? _.sum(mny[p][r]) : null,
+          points: pts[p][r].length ? _.sum(pts[p][r]) : null,
           money_status: mny[p][r].length !== 1 ? STATUS_ERR : (mny[p][r][0] === null ? STATUS_WARN : STATUS_OK),
           point_status: pts[p][r].length !== 1 ? STATUS_ERR : (pts[p][r][0] === null ? STATUS_WARN : STATUS_OK)
         })
@@ -43,7 +43,8 @@ class Standings extends React.Component {
         return user
       }
     )
-    const preferency =  preferMoney ?  ['total_money', 'total_points'] : ['total_points', 'total_money'];
+
+    const preferency = preferMoney ? ['total_money', 'total_points'] : ['total_points', 'total_money'];
     users = _.orderBy(users, _.concat(preferency, 'number'), ['desc', 'desc', 'asc'])
     let prev = {}
     let total_order = 0
@@ -84,7 +85,7 @@ class Standings extends React.Component {
               users,
               u =>
                 <tr key={`u${u.number}`}>
-                  <td>{1+u.total_order}.</td>
+                  <td>{1 + u.total_order}.</td>
                   <td>{u.name}</td>
                   {_.flatten(
                     _.times(

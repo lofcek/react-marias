@@ -10,18 +10,17 @@ const [STATUS_OK, STATUS_WARN, STATUS_ERR] = ['', 'warning', 'danger']
 
 class Standings extends React.Component {
   render() {
-    const { listCnt, lang, players, round, score, preferMoney} = this.props;
+    const { playersCnt, lang, players, round, score, preferMoney} = this.props;
 
     // lists how much points and money player gets in each round
-    let pts = _.times(listCnt, () => _.times(round.size, () => []))
-    let mny = _.times(listCnt, () => _.times(round.size, () => []))
+    let pts = _.times(playersCnt, () => _.times(round.size, () => []))
+    let mny = _.times(playersCnt, () => _.times(round.size, () => []))
 
     round.forEach(
       (table, r) => table.forEach(
         (players, t) => players.forEach(
           (p, i) => {
             if ( p !== null) {
-              //console.log(JSON.stringify([r, t, p], score.getIn(['money_float', r, t, i])))
               mny[p][r].push(score.getIn(['money_float', r, t, i], null))
               pts[p][r].push(score.getIn(['points', r, t, i], null))
             }
@@ -30,7 +29,7 @@ class Standings extends React.Component {
       )
     )
 
-    let users = _.times(listCnt,
+    let users = _.times(playersCnt,
       p => {
         let user = _.extend({ number: p }, players.get(p).toJS())
         user.rounds = _.times(round.size, r => ({
@@ -111,8 +110,8 @@ class Standings extends React.Component {
 export default connect(
   (state, ownProps) => ({
     lang: state.lang,
-    players: state.players.get('list'),
-    listCnt: state.players.get('listCnt'),
+    players: state.players.get('playersList'),
+    playersCnt: state.players.get('playersCnt'),
     round: state.draw.getIn(['round']),
     score: state.score,
     preferMoney: state.score.getIn(['rule', 'preferMoney'])

@@ -14,7 +14,7 @@ class Round extends React.Component {
         <h1>{this.props.tourName}</h1>
         <h2>{sprintf(lang.IDS_NTH_ROUND, r+1) }</h2>
         {_.times(
-          this.props.listCnt / 3,
+          this.props.playersCnt / 3,
           t => <RoundTable
             key={`rt-${r}-${t}`}
             round={r}
@@ -30,7 +30,7 @@ export default connect(
   state => ({
     lang: state.lang,
     tourName: state.tournament.get('name'),
-    players: state.players.get('list'),
-    listCnt: state.players.get('listCnt')
+    players: state.players.get('playersList'),
+    playersCnt: state.players.get('playersCnt')
   })
 )(Round);

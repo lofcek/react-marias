@@ -5,7 +5,7 @@ const PLAYER_MAX = 150;
 
 let initialState = Immutable.fromJS({
   
-  list: [
+  playersList: [
     { name: 'Jozko Mrkvicka', club: 'Najvacsia diera' },
     { name: 'Janko Hrasko', club: 'Prievidza' },
     { name: 'Karol Stvrty', club: 'Plavecky Stvrtok' },
@@ -17,16 +17,16 @@ let initialState = Immutable.fromJS({
     { name: 'ABC ', club: 'def' }
   ]
 })
-initialState = initialState.set('listCnt', initialState.get('list').size)
-while (initialState.get('list').size < PLAYER_MAX)
-  initialState = initialState.update('list', l => l.push(Immutable.fromJS({ name: '', club: '' })));
+initialState = initialState.set('playersCnt', initialState.get('playersList').size)
+while (initialState.get('playersList').size < PLAYER_MAX)
+  initialState = initialState.update('playersList', l => l.push(Immutable.fromJS({ name: '', club: '' })));
 
 export default function playersReducer(state = initialState, action) {
   switch (action.type) {
     case Actions.PLAYER_CHANGE:
-      state = state.updateIn(['list', action.payload.index], (val) => val.merge(action.payload.player));
-      let lastUsed = state.get('list').findLastIndex(v => v.get('name') || v.get('club'));
-      state = state.set('listCnt', lastUsed + 1);
+      state = state.updateIn(['playersList', action.payload.index], (val) => val.merge(action.payload.player));
+      let lastUsed = state.get('playersList').findLastIndex(v => v.get('name') || v.get('club'));
+      state = state.set('playersCnt', lastUsed + 1);
       return state
     default:
       return state

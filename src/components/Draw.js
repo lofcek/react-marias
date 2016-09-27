@@ -53,7 +53,7 @@ EditableTd = connect(
 class Draw extends React.Component {
   render() {
     const rounds = this.props.rounds.toJS();
-    const numTables = rounds.length ? this.props.listCnt / 3 : 0;
+    const numTables = rounds.length ? this.props.playersCnt / 3 : 0;
     const {lang, edited} = this.props;
 
     // map how often appeared such number (show warning for used more than once in a round)
@@ -111,6 +111,6 @@ export default connect(
     edited: state.draw.get('edited'),
     tourName: state.tournament.get('name'),
     numRounds: state.tournament.get('numRounds'),
-    listCnt: state.players.get('listCnt')
+    playersCnt: state.players.get('playersCnt')
   })
 )(Draw);

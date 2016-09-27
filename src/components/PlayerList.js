@@ -7,14 +7,14 @@ import {sprintf} from 'sprintf-js';
 class PlayerList extends React.Component {
   handleMakeFixedDraws(e) {
     for (let i = 0; i < this.props.numFixed; ++i) {
-      this.props.makeFixedDraw(i, this.props.listCnt);
+      this.props.makeFixedDraw(i, this.props.playersCnt);
     }
   }
   render() {
     const lang = this.props.lang;
-    let players = this.props.list.map((p, num) => {
+    let players = this.props.playersList.map((p, num) => {
       return (
-        <div key={num} className="row" hidden={num > this.props.listCnt}>
+        <div key={num} className="row" hidden={num > this.props.playersCnt}>
           <div className="col-lg-1">{num + 1}.</div>
           <div className="col-lg-6">
             <input type="text" value={p.get('name') } onChange={(e) => this.props.playerChange(num, { name: e.target.value }) }/>
@@ -29,7 +29,7 @@ class PlayerList extends React.Component {
       <ButtonToolbar>
         <Button
           bsStyle="primary"
-          disabled={this.props.listCnt % 3 !== 0}
+          disabled={this.props.playersCnt % 3 !== 0}
           onClick={(e) => this.handleMakeFixedDraws(e) }
           >
           {sprintf(lang.IDS_DRAW_FIRST_ROUNDS[lang.pluralForm(this.props.numFixed)], this.props.numFixed) }
@@ -53,8 +53,8 @@ class PlayerList extends React.Component {
 
 export default connect(
   state => ({
-    list: state.players.get('list'),
-    listCnt: state.players.get('listCnt'),
+    playersList: state.players.get('playersList'),
+    playersCnt: state.players.get('playersCnt'),
     lang: state.lang,
     tourName: state.tournament.get('name'),
     numFixed: state.tournament.get('numFixed'),

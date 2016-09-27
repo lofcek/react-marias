@@ -39,7 +39,7 @@ class RoundTable extends React.Component {
 export default connect(
   (state, ownProps) => ({
     lang: state.lang,
-    players: state.players.get('list'),
+    players: state.players.get('playersList'),
     order: state.draw.getIn(['round', ownProps.round, ownProps.table]),
     money_str: state.score.getIn(['money_str', ownProps.round, ownProps.table],  null),
     //money_float: state.score.getIn(['money_float', ownProps.round, ownProps.table],  null),

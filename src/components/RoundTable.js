@@ -4,9 +4,7 @@ import {Table} from 'react-bootstrap';
 import {sprintf} from 'sprintf-js';
 import {moneyChange} from '../reducers/actions';
 import _ from 'lodash';
-
-
-
+import Immutable from 'immutable';
 
 class RoundTable extends React.Component {
   render() {
@@ -25,7 +23,7 @@ class RoundTable extends React.Component {
             {
               _.times(3, i =>
                 <tr key={`tr-${round}-${table}-${i}`}>
-                  <td>{order.get(i) + 1}.{players.get(order.get(i)).get('name') }</td>
+                  <td>{order.get(i) + 1}.{players.get(order.get(i), Immutable.Map()).get('name', '-') }</td>
                   <td><input type="text" value={money_str.get(i)} onChange={e => this.props.moneyChange(round, table, i, e.target.value) }/></td>
                   <td>{points.get(i)===null ? '' : points.get(i)}</td>
                 </tr>

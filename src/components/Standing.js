@@ -20,9 +20,11 @@ class Standings extends React.Component {
       (table, r) => table.forEach(
         (players, t) => players.forEach(
           (p, i) => {
-            //console.log(JSON.stringify([r, t, p], score.getIn(['money_float', r, t, i])))
-            mny[p][r].push(score.getIn(['money_float', r, t, i], null))
-            pts[p][r].push(score.getIn(['points', r, t, i], null))
+            if ( p !== null) {
+              //console.log(JSON.stringify([r, t, p], score.getIn(['money_float', r, t, i])))
+              mny[p][r].push(score.getIn(['money_float', r, t, i], null))
+              pts[p][r].push(score.getIn(['points', r, t, i], null))
+            }
           }
         )
       )
